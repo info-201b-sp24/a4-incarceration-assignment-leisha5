@@ -5,67 +5,55 @@ output: html_document
 
 ### Introduction
 
-An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
+People of colour are incarcerated at far higher rates than other demographics. As such, I will analysis the jail population data to understand the racial disparity present in incarceration trends in the U.S. Specifically, I will analyse the total jail population and compare it across different racial groups. I am analysing this problem in order to highlight racial inequalities in the U.S. criminal justice system.
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as: 
-
-- What is the average value of my variable across all the counties (in the current year)?
-- Where is my variable the highest / lowest?
-- How much has my variable change over the last N years?
-
-Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
+This dataset contains observations from 1970 to 2018. The county with the highest jail population is Los Angeles County with 17208 inmates, while the counties with the lowest are Caldwell County, Lyon County, Big Stone County, Stevens County, and Traverse County, with 0 inmates. However, interestingly enough, the average number of white inmates appears to be higher than the average number of Black inmates (117 > 84).
 
 ### The Dataset
 
 Who collected the data?  
+- U.S. Bureau of Justice Statistics  
 How was the data collected or generated?  
+- Data was compiled from official records of jail populations  
 Why was the data collected?  
-How many observations (rows) are in your data?  
-How many features (columns) are in the data?  
+- To analyse and monitor trends in jail populations, focusing on racial disparity  
+How many observations (rows) are in your data?    
+- 153811  
+How many features (columns) are in the data?    
+- 28  
 What, if any, ethical questions or questions of power do you need to consider when working with this data?  
-What are possible limitations or problems with this data?   (at least 200 words)
+- Firstly, the potential stigmatization of communities is a significant concern. Highlighting high incarceration rates in certain areas can reinforce negative stereotypes and further marginalize already vulnerable populations. It is essential to present data in a way that promotes understanding and compassion rather than judgment. Secondly, inaccurate or incomplete data can lead to misguided policies and interventions that may harm rather than help affected communities. Ensuring that the data is as accurate and comprehensive as possible is crucial for meaningful analysis. Additionally, publicizing trends in incarceration rates can influence public perception and policy in various ways, potentially leading to increased surveillance and policing in specific communities.  
+
+What are possible limitations or problems with this data?   (at least 200 words)  
+- One significant limitation is the presence of missing data. Incomplete records can skew analyses and lead to inaccurate conclusions. Missing data may result from various factors, including administrative errors or lack of reporting from certain jurisdictions. Moving on, different counties may have different definitions and methods for recording jail population data, making it difficult to compare data across regions. Such inconsistencies can make drawing meaningful comparisons and identifying trends hard. Furthermore, the accurate reporting of certain populations is a critical issue. Some groups, particularly marginalized communities, may be underrepresented or overrepresented in the data due to systemic biases in the criminal justice system. This can lead to an incomplete understanding of incarceration trends. Additionally, the dataset may not capture all relevant factors influencing jail populations, such as changes in local policies, economic conditions, and social services availability. Due to these limitations, it is important to interpret the data with caution, and use it with supporting data sources instead of by itself.  
 
 
 ### Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+I included this chart because it shows how Black and White jail populations changed over time. This chart actually shows that at any given moment, on average there are more White incarcerated people than Black. This is actually very interesting as it is known that people of colour are incarcerated at higher rates. 
+Another thing to notice is that the total jail population appears to be far greater than the sum of the two races analysed. This goes to show that we should consider and analyse other races as well, beyond White and Black.
 
-The first chart that you will create and include will show the trend over time of your variable/topic. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
-```
+``````{r, echo = FALSE, message = FALSE}
+source("trendsovertime.R")
+plot(trends_chart)
+````
 
 ### Variable Comparison Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+I included this chart because I was curious to see how the jail populations of other races, beyond White and Black, compared. This was after creating and interpreting my trends over time graph, which showed the populations of all other races clearly added up. In this graph, we can see that while White and Black remain the greatest incarcerated rates, there is still a sizable Latinx population in jail. There are also significant populations of Native, AAPI, and Other races. This makes me wonder as to whether this 'other' races are also included in the definition of 'people of colour', as I'm sure the sum of all these other races would be greater than the White incarcerated population.
 
-The second chart that you will create and include will show how two different (continuous) variables are related to one another. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- If you choose to add a color encoding (not required), you need a legend for your different color and a clear legend title
+``````{r, echo = FALSE, message = FALSE}
+source("variablecomparison.R")
+plot(histogram)
+````
 
 ### Map
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+I included this chart because I was curious to discover whether jail populations changed significantly from state to state. I found that jail populations tend to be higher near the coasts, and near the Southern border. The higher incarceration rates near the Southern border can be explained in some part by the high amount of immigration; however, it is not clear based on the data why the average jail population would be higher near the coasts. The state with the highest jail population appears to be California. It is once again unclear based on the data as to why.
 
-The last chart that you will create and include will show how a variable is distributed geographically. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Your map needs a title
-- Your color scale needs a legend with a clear label
-- Use a map based coordinate system to set the aspect ratio of your map
-
+``````{r, echo = FALSE, message = FALSE}
+source("map.R")
+plot(jail_pop_map)
+````
